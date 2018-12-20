@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Defender : MonoBehaviour {
+public class Defender : MonoBehaviour
+{
+    public int starCost = 0;
 
-	public int starCost = 0;
+    private StarDisplay starDisplay;
 
-	private StarDisplay starDisplay;
+    void Start()
+    {
+        starDisplay = GameObject.FindObjectOfType<StarDisplay>();
+    }
 
-	void Start(){
-		starDisplay = GameObject.FindObjectOfType<StarDisplay> ();
-	}
-
-	public void AddStars (int amount){
-		starDisplay.AddStars (amount);
-	}
+    public void AddStars(int amount)
+    {
+        starDisplay.AddStars(amount);
+    }
 }
