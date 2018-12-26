@@ -6,7 +6,7 @@ public class shooter : MonoBehaviour
 
 	private GameObject projectileParent;
 	private Animator animator;
-	private Spawner myLaneSpawner;
+	private Transform myLane;
 
 	void Start()
     {
@@ -32,20 +32,19 @@ public class shooter : MonoBehaviour
 
 	void SetMyLaneSpawner ()
     {
-		Spawner[] Spawners = GameObject.FindObjectsOfType<Spawner> ();
-		foreach (Spawner spawn in Spawners)
+        foreach(GameObject lane in FindObjectOfType<Spawner>().GetComponentsInChildren<GameObject>())
         {
-			if (spawn.transform.position.y == transform.position.y)
+            if(transform.position.y == lane.transform.position.y)
             {
-				myLaneSpawner = spawn;
-			}
-		}
+                myLane = lane.transform;
+            }
+        }
 	}
 
 	bool IsAttackerAheadInLane ()
     {
-        if (myLaneSpawner.transform.childCount <= 0) { return false; }
-		foreach (Transform child in myLaneSpawner.transform)
+        if (myLane.childCount <= 0) { return false; }
+		foreach (Transform child in myLane)
         {
 			if (child.transform.position.x > transform.position.x)
             {
