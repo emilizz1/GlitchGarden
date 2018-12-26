@@ -33,7 +33,7 @@ public class Attacker : MonoBehaviour
         walkSpeed = speed;
     }
 
-    public void StrikeCurrentTarget(float damage)
+    public void StrikeCurrentTarget(float damage) // called from animation
     {
         if (currentTarget)
         {

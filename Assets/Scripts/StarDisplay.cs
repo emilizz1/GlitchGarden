@@ -4,27 +4,30 @@ using UnityEngine.UI;
 [RequireComponent (typeof(Text))]
 public class StarDisplay : MonoBehaviour
 {
-	private int Amout = 100;
+	[SerializeField] int startingAmout = 100;
+
+    int amount;
 	private Text text;
 	public enum Status {SUCCESS, FAILURE};
     
 	void Start ()
     {
 		text = GetComponent<Text> ();
+        amount = startingAmout;
 		UpdateDisplay ();
 	}
 
 	public void AddStars(int amount)
     {
-		Amout += amount;
+        amount += amount;
 		UpdateDisplay();
 	}
 
 	public Status UseStars (int amount)
     {
-		if (amount <= Amout)
+		if (this.amount <= amount)
         {
-			Amout -= amount;
+            amount -= amount;
 			UpdateDisplay ();
 			return Status.SUCCESS;
 		} 
@@ -32,6 +35,6 @@ public class StarDisplay : MonoBehaviour
 	}
 	private void UpdateDisplay()
     {
-		text.text = Amout.ToString ();
+		text.text = amount.ToString ();
 	}
 }
