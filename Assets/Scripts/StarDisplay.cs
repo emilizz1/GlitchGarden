@@ -17,17 +17,17 @@ public class StarDisplay : MonoBehaviour
 		UpdateDisplay ();
 	}
 
-	public void AddStars(int amount)
+	public void AddStars(int amount) // called from animator
     {
-        amount += amount;
+        this.amount += amount;
 		UpdateDisplay();
 	}
 
 	public Status UseStars (int amount)
     {
-		if (this.amount <= amount)
+		if (amount <= this.amount)
         {
-            amount -= amount;
+            this.amount -= amount;
 			UpdateDisplay ();
 			return Status.SUCCESS;
 		} 
