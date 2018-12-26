@@ -1,33 +1,42 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class Spawner : MonoBehaviour
 {
-	public GameObject[] attackerPrefabArray;
+	[SerializeField] GameObject[] attackerPrefabArray;
+	[SerializeField] float[] attackerSpawnTime;
+    [SerializeField] GameObject[] spawnLanes;
 
-	void Update ()
+    bool playing = true;
+
+    void Start()
     {
-		foreach (GameObject thisAttacker in attackerPrefabArray)
+        StartCoroutine(Spawing());
+    }
+
+    IEnumerator Spawing()
+    {
+        int currentAttacker = 0;
+        while (playing)
         {
-			if(isTimeToSpawn(thisAttacker))
+            if (attackerPrefabArray[currentAttacker])
             {
-				Spawn (thisAttacker);
-			}
-		}
-	}
+                yield return new WaitForSecondsRealtime(attackerSpawnTime[currentAttacker]);
+                Spawn(attackerPrefabArray[currentAttacker]);
+                currentAttacker++;
+            }
+            else
+            {
+                playing = false;
+            }
+        }
+    }
 
 	void Spawn (GameObject myGameObject)
     {
-		GameObject myAttacker = Instantiate (myGameObject) as GameObject;
-		myAttacker.transform.parent = transform;
-		myAttacker.transform.position = transform.position;
-	}
-
-	bool isTimeToSpawn (GameObject attackerGameObject)
-    {
-		Attacker attacker = attackerGameObject.GetComponent<Attacker> ();
-		float meanSpawnDelay = attacker.seenEverySeconds;
-		float spawnsPerSecond = 1 / meanSpawnDelay;
-		float threshold = spawnsPerSecond * Time.deltaTime /5;
-		return Random.value < threshold;
-	}
+        GameObject spawningLane = spawnLanes[Random.Range(0, spawnLanes.Length)];
+        GameObject myAttacker = Instantiate(myGameObject) as GameObject;
+        myAttacker.transform.parent = spawningLane.transform;
+        myAttacker.transform.position = spawningLane.transform.position;
+    }
 }

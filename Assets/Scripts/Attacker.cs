@@ -3,8 +3,6 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class Attacker : MonoBehaviour
 {
-    public float seenEverySeconds;
-
     private float walkSpeed;
     private GameObject currentTarget;
     private Animator animator;
