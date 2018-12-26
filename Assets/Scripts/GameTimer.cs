@@ -3,8 +3,7 @@ using UnityEngine.UI;
 
 public class GameTimer : MonoBehaviour
 {
-    public float levelSeconds = 100;
-
+    private float levelSeconds ;
     private Slider slider;
     private AudioSource audioSource;
     private bool isEndOfLevel = false;
@@ -18,12 +17,13 @@ public class GameTimer : MonoBehaviour
         levelManager = GameObject.FindObjectOfType<LevelManager>();
         winLAbel = GameObject.Find("You win");
         winLAbel.SetActive(false);
+        levelSeconds = FindObjectOfType<Spawner>().GetLevelTime();
     }
 
     void Update()
     {
         slider.value = Time.timeSinceLevelLoad / levelSeconds;
-        if (Time.timeSinceLevelLoad >= levelSeconds && !isEndOfLevel)
+        if (Time.timeSinceLevelLoad >= levelSeconds && !isEndOfLevel && FindObjectsOfType<Attacker>().Length < 1)
         {
             DestroyAllTaggedObjects();
             audioSource.Play();

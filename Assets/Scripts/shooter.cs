@@ -32,11 +32,12 @@ public class shooter : MonoBehaviour
 
 	void SetMyLaneSpawner ()
     {
-        foreach(GameObject lane in FindObjectOfType<Spawner>().GetComponentsInChildren<GameObject>())
+        foreach(Transform lane in FindObjectOfType<Spawner>().GetComponentsInChildren<Transform>())
         {
-            if(transform.position.y == lane.transform.position.y)
+            if(transform.position.y == lane.position.y)
             {
-                myLane = lane.transform;
+                myLane = lane;
+                return;
             }
         }
 	}
@@ -54,7 +55,7 @@ public class shooter : MonoBehaviour
 		return false;
 	}
 
-	private void Fire()
+	private void Fire() // called from animation
     {
 		GameObject newProjectile = Instantiate (projectile)as GameObject;
 		newProjectile.transform.parent = projectileParent.transform;

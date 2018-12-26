@@ -4,7 +4,7 @@ using System.Collections;
 public class Spawner : MonoBehaviour
 {
 	[SerializeField] GameObject[] attackerPrefabArray;
-	[SerializeField] float[] attackerSpawnTime;
+    [SerializeField] float[] attackerSpawnTime;
     [SerializeField] GameObject[] spawnLanes;
 
     bool playing = true;
@@ -38,5 +38,15 @@ public class Spawner : MonoBehaviour
         GameObject myAttacker = Instantiate(myGameObject) as GameObject;
         myAttacker.transform.parent = spawningLane.transform;
         myAttacker.transform.position = spawningLane.transform.position;
+    }
+
+    public float GetLevelTime()
+    {
+        float levelTime = 0;
+        foreach(float time in attackerSpawnTime)
+        {
+            levelTime += time;
+        }
+        return levelTime;
     }
 }
