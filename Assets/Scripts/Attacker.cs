@@ -21,11 +21,6 @@ public class Attacker : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D()
-    {
-
-    }
-
     public void ChangeSpeed(float speed)
     {
         walkSpeed = speed;

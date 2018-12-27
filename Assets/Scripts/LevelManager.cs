@@ -3,13 +3,23 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    bool levelFinished = false;
 
     public float autoLoadNextLevelAfter;
 
     void Start()
     {
-        if (autoLoadNextLevelAfter > 0)
+        if (autoLoadNextLevelAfter > 0) {
             Invoke("LoadNextLevel", autoLoadNextLevelAfter);
+        }
+    }
+
+    void Update()
+    {
+        if(levelFinished && Input.GetMouseButton(0))
+        {
+            LoadNextLevel();
+        }
     }
 
     public void LoadLevel(string name)
@@ -23,8 +33,14 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Quit requested");
         Application.Quit();
     }
+
     public void LoadNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings + 1);
+        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings + 1); // TODO fix
+    }
+
+    public void LevelFinished()
+    {
+        levelFinished = true;
     }
 }

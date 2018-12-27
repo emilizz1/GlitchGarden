@@ -28,7 +28,7 @@ public class GameTimer : MonoBehaviour
             DestroyAllTaggedObjects();
             audioSource.Play();
             winLAbel.SetActive(true);
-            Invoke("LoadNextLevel", audioSource.clip.length);
+            FindObjectOfType<LevelManager>().LevelFinished();
             isEndOfLevel = true;
         }
     }
@@ -40,10 +40,5 @@ public class GameTimer : MonoBehaviour
         {
             Destroy(taggedObject);
         }
-    }
-
-    void LoadNextLevel()
-    {
-        levelManager.LoadNextLevel();
     }
 }
