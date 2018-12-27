@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings + 1); // TODO fix
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // TODO fix
     }
 
     public void LevelFinished()
