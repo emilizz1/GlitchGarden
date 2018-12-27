@@ -7,15 +7,13 @@ public class GameTimer : MonoBehaviour
     private Slider slider;
     private AudioSource audioSource;
     private bool isEndOfLevel = false;
-    private LevelManager levelManager;
     private GameObject winLAbel;
 
     void Start()
     {
         slider = GetComponent<Slider>();
         audioSource = GetComponent<AudioSource>();
-        levelManager = GameObject.FindObjectOfType<LevelManager>();
-        winLAbel = GameObject.Find("You win");
+        winLAbel = GameObject.Find("You win"); //TODO serialize
         winLAbel.SetActive(false);
         levelSeconds = FindObjectOfType<Spawner>().GetLevelTime();
     }

@@ -43,4 +43,9 @@ public class LevelManager : MonoBehaviour
     {
         levelFinished = true;
     }
+
+    public void LevelLost()
+    {
+        // TODO load main menu
+    }
 }
