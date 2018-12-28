@@ -49,4 +49,9 @@ public class Spawner : MonoBehaviour
         }
         return levelTime;
     }
+
+    public void StoppedPlaying()
+    {
+        playing = false;
+    }
 }

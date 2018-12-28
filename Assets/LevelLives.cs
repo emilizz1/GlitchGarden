@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class LevelLives : MonoBehaviour
 {
     [SerializeField] int levelLives = 2;
+    [SerializeField] GameObject loseLabel;
 
     AudioSource audioSource;
-    GameObject winLAbel;
     Text text;
 
 	void Start ()
@@ -16,18 +16,19 @@ public class LevelLives : MonoBehaviour
         text = GetComponent<Text>();
         text.text = levelLives.ToString();
         audioSource = GetComponent<AudioSource>();
-        winLAbel = GameObject.Find("You win"); //TODO serialize
+        loseLabel.SetActive(false);
     }
     
-	void RemoveLife()
+	public void RemoveLife()
     {
         levelLives -= 1;
         text.text = levelLives.ToString();
         if (levelLives == 0)
         {
             DestroyAllTaggedObjects();
-            audioSource.Play();
-            winLAbel.SetActive(true);
+            FindObjectOfType<Spawner>().StoppedPlaying();
+            //audioSource.Play();
+            loseLabel.SetActive(true);
             FindObjectOfType<LevelManager>().LevelLost();
         }
     }
