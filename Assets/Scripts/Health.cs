@@ -2,19 +2,22 @@
 
 public class Health : MonoBehaviour
 {
-    public float health = 100f;
+    public float maxHealth = 100f;
+
+    float health;
+
+    void Start()
+    {
+        health = maxHealth;
+    }
 
     public void DealDamage(float damage)
     {
         health -= damage;
+        GetComponentInChildren<HealthBar>().GiveCurrentHealth(health / maxHealth);
         if (health <= 0)
         {
-            DestroyObject();
+            Destroy(gameObject);
         }
-    }
-
-    public void DestroyObject()
-    {
-        Destroy(gameObject);
     }
 }

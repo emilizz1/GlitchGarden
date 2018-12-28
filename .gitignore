@@ -34,3 +34,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Assets/Sounds/Bonus/
+Assets/Images/PNG/

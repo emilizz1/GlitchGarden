@@ -6,15 +6,18 @@ public class Attacker : MonoBehaviour
     private float walkSpeed;
     private GameObject currentTarget;
     private Animator animator;
+    private HealthBar healthBar;
     
     void Start()
     {
         animator = GetComponent<Animator>();
+        healthBar = GetComponentInChildren<HealthBar>();
     }
     
     void Update()
     {
         transform.Translate(Vector3.left * walkSpeed * Time.deltaTime);
+        healthBar.SetPosition(transform.position);
         if (!currentTarget)
         {
             animator.SetBool("IsAttacking", false);
