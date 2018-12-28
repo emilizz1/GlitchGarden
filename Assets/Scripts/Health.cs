@@ -9,6 +9,7 @@ public class Health : MonoBehaviour
     void Start()
     {
         health = maxHealth;
+        GetComponentInChildren<HealthBar>().GiveCurrentHealth(health / maxHealth);
     }
 
     public void DealDamage(float damage)
