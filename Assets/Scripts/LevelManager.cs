@@ -30,6 +30,22 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnLevelLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnLevelLoaded;
+    }
+
+    void OnLevelLoaded(Scene scene, LoadSceneMode mode)
+    {
+        levelWon = false;
+        levelLost = false;
+    }
+
     void Update()
     {
         if(levelWon && Input.GetMouseButton(0))
@@ -55,7 +71,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // TODO fix
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void LoadMainMenu()
