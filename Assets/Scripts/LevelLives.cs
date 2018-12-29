@@ -8,6 +8,8 @@ public class LevelLives : MonoBehaviour
     [SerializeField] int levelLives = 2;
     [SerializeField] GameObject loseLabel;
 
+    public bool levelLost = false;
+
     AudioSource audioSource;
     Text text;
 
@@ -23,13 +25,14 @@ public class LevelLives : MonoBehaviour
     {
         levelLives -= 1;
         text.text = levelLives.ToString();
-        if (levelLives == 0)
+        if (levelLives == 0 && !levelLost)
         {
             DestroyAllTaggedObjects();
             FindObjectOfType<Spawner>().StoppedPlaying();
             //audioSource.Play();
             loseLabel.SetActive(true);
             FindObjectOfType<LevelManager>().LevelLost();
+            levelLost = true;
         }
     }
 

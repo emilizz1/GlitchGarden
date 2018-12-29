@@ -17,7 +17,7 @@ public class Spawner : MonoBehaviour
     IEnumerator Spawing()
     {
         int currentAttacker = 0;
-        while (playing)
+        while (playing && currentAttacker < attackerPrefabArray.Length)
         {
             if (attackerPrefabArray[currentAttacker])
             {

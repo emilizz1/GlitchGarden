@@ -3,29 +3,35 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    bool levelFinished = false;
+    [SerializeField] int MainMenuBuildIndex = 3;
+
+    bool levelWon = false;
+    bool levelLost = false;
 
     public float autoLoadNextLevelAfter;
 
     void Start()
     {
         if (autoLoadNextLevelAfter > 0) {
-            Invoke("LoadNextLevel", autoLoadNextLevelAfter);
+            Invoke("LoadMainMenu", autoLoadNextLevelAfter);
         }
     }
 
     void Update()
     {
-        if(levelFinished && Input.GetMouseButton(0))
+        if(levelWon && Input.GetMouseButton(0))
         {
             LoadNextLevel();
         }
+        else if(levelLost && Input.GetMouseButton(0))
+        {
+            LoadMainMenu();
+        }
     }
 
-    public void LoadLevel(string name)
+    public void LoadLevel(int levelIndex)
     {
-        Debug.Log("New Level load: " + name);
-        SceneManager.LoadScene(name); //TODO change to int
+        SceneManager.LoadScene(levelIndex);
     }
 
     public void QuitRequest()
@@ -39,13 +45,18 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // TODO fix
     }
 
-    public void LevelFinished()
+    public void LoadMainMenu()
     {
-        levelFinished = true;
+        SceneManager.LoadScene(MainMenuBuildIndex);
+    }
+
+    public void LevelWon()
+    {
+        levelWon = true;
     }
 
     public void LevelLost()
     {
-        // TODO load main menu
+        levelLost = true;
     }
 }

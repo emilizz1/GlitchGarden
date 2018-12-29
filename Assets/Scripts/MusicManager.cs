@@ -17,7 +17,7 @@ public class MusicManager : MonoBehaviour
 		audioSource.volume = PlayerPrefManager.GetMasterVolume ();
 	}
 
-	void OnLevelWasLoaded(int level)
+	void OnLevelWasLoaded(int level) // TODO refactor this method
     {
 		AudioClip thisLevelMusic = levelMusicChangeArray [level];
 		if (thisLevelMusic)

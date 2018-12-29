@@ -25,7 +25,7 @@ public class OptionsController : MonoBehaviour
     {
 		PlayerPrefManager.SetMasterVolume (VolumeSlider.value);
 		PlayerPrefManager.SetDifficulty (Difficultyslider.value);
-		levelManager.LoadLevel ("01a_Start");
+		levelManager.LoadMainMenu();
 	}
 
 	public void SetDefault ()
