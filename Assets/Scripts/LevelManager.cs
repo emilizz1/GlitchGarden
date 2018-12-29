@@ -10,6 +10,19 @@ public class LevelManager : MonoBehaviour
 
     public float autoLoadNextLevelAfter;
 
+    private void Awake()
+    {
+        int levelManagerCount = FindObjectsOfType<LevelManager>().Length;
+        if(levelManagerCount > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     void Start()
     {
         if (autoLoadNextLevelAfter > 0) {
