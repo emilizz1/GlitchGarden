@@ -5,7 +5,6 @@ public class OptionsController : MonoBehaviour
 {
 	public Slider VolumeSlider;
 	public Slider Difficultyslider;
-	public LevelManager levelManager;
 	
 	private MusicManager musicManager;
 	
@@ -25,7 +24,7 @@ public class OptionsController : MonoBehaviour
     {
 		PlayerPrefManager.SetMasterVolume (VolumeSlider.value);
 		PlayerPrefManager.SetDifficulty (Difficultyslider.value);
-		levelManager.LoadMainMenu();
+		FindObjectOfType<LevelManager>().LoadMainMenu();
 	}
 
 	public void SetDefault ()

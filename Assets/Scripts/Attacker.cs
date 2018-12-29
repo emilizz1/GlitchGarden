@@ -34,7 +34,6 @@ public class Attacker : MonoBehaviour
             if (health)
             {
                 float damageTakenBack = health.DealDamage(damage);
-                print(damageTakenBack);
                 if(damageTakenBack > 0)
                 {
                     GetComponent<Health>().DealDamage(damageTakenBack);
