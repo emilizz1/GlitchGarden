@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
         GetComponentInChildren<HealthBar>().GiveCurrentHealth(health / maxHealth);
     }
 
-    public void DealDamage(float damage)
+    public virtual float DealDamage(float damage)
     {
         health -= damage;
         GetComponentInChildren<HealthBar>().GiveCurrentHealth(health / maxHealth);
@@ -20,5 +20,6 @@ public class Health : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        return 0f;
     }
 }

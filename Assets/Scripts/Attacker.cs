@@ -33,7 +33,12 @@ public class Attacker : MonoBehaviour
             Health health = currentTarget.GetComponent<Health>();
             if (health)
             {
-                health.DealDamage(damage);
+                float damageTakenBack = health.DealDamage(damage);
+                print(damageTakenBack);
+                if(damageTakenBack > 0)
+                {
+                    GetComponent<Health>().DealDamage(damageTakenBack);
+                }
             }
         }
     }
