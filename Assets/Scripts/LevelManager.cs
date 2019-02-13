@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -46,18 +47,6 @@ public class LevelManager : MonoBehaviour
         levelLost = false;
     }
 
-    void Update()
-    {
-        if(levelWon && Input.GetMouseButton(0))
-        {
-            LoadNextLevel();
-        }
-        else if(levelLost && Input.GetMouseButton(0))
-        {
-            LoadMainMenu();
-        }
-    }
-
     public void LoadLevel(int levelIndex)
     {
         SceneManager.LoadScene(levelIndex);
@@ -82,10 +71,12 @@ public class LevelManager : MonoBehaviour
     public void LevelWon()
     {
         levelWon = true;
+        Invoke("LoadNextLevel", 3f);
     }
 
     public void LevelLost()
     {
         levelLost = true;
+        Invoke("LoadMainMenu", 3f);
     }
 }
